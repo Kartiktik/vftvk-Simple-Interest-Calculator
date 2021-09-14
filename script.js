@@ -8,9 +8,11 @@ function compute()
     }
     var rate = document.getElementById("rate").value;
     var years = document.getElementById("years").value;
-    var interest = principal * years * rate /100;
-    p = document.getElementById("principal").value;
-    document.getElementById("result").innerHTML="If you deposit <strong>"+principal+"</strong>,\<br\>at an interest rate of "+rate+"%\<br\>You will receive an amount of "+amount+",\<br\>in the year "+year+"\<br\>"
+	var year = new Date().getFullYear()+parseInt(years);
+    var interest = (principal * years * rate ) / 100;
+	
+	var amount = interest+principal;
+    document.getElementById("result").innerHTML="<br\>If you deposit <strong>Rs."+principal+"</strong>,\<br\>at an interest rate of <strong> "+rate+"% </strong>\<br\>You will receive an amount of <strong>Rs."+amount+"</strong>,\<br\>in the year <strong>"+year+"</strong>\<br\>"
 
     
 }
