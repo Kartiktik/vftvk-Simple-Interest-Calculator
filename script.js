@@ -1,34 +1,43 @@
 function compute()
 {
-    // Import HTML elements
-    principal = document.getElementById("principal").value;
-    rate = document.getElementById("rate").value;
-    years = document.getElementById("years").value;
-    result = document.getElementById("result");
 
-    // Calculate interest
-    interest = principal * years * rate / 100;
+    // Get the values from the form
+    var principalField = document.getElementById("principal");
 
-    // Asure that the principal is positive number
-    if (principal < 1) {
+    principal = principalField.value;
+
+    if (principal <= 0) {
         alert("Enter a positive number");
-        document.getElementById("principal").focus();
+        principalField.focus();
         return;
     }
 
-    // Calculate the year
-    thisYear = new Date().getFullYear();
-    futureYear = thisYear + Number(years);
+    var rate = document.getElementById("rate").value;
+    var years = document.getElementById("years").value;
 
-    // Display the result - with numbers in bold.
-    result.innerHTML = "</br>If you deposit <mark>" + principal + "</mark>,</br> at an interest rate of <mark>" + rate + "</mark> %.</br> You will receive an amount of <mark>"  + interest + "</br></mark> in the year <mark>" + futureYear + "</mark>.";
+    // Calculate the interest
+    var interest = principal * years * rate / 100;
+
+    // Calculate end year based on current date and input
+    var now = new Date()
+    var end_year = now.getFullYear() + Number(years);
+
+    // Sets the result text
+    document.getElementById("result").innerHTML =
+        "<div>" +
+        "If you deposit <mark>" + principal + "</mark>,<br/>" +
+        "at an interest rate of <mark>" + rate + "%</mark>. <br/>" +
+        "You will receive an amount of <mark>" + interest + "</mark>,<br/>" +
+        "in the year <mark>" + end_year + "</mark>." +
+        "</div>";
+
 }
 
-function rangeSlider() {
-    // Import HTML elements
-    rate = document.getElementById("rate").value;
-    rateNumber = document.getElementById("rate-number");
+function show_rate_value() {
 
-    // Express the rate from the range slider in numbers
-    rateNumber.innerHTML = rate + " %";
+    var rate = document.getElementById("rate").value;
+
+    document.getElementById("rangeval").innerHTML = rate + "%";
+
 }
+
